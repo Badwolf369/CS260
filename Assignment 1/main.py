@@ -36,6 +36,7 @@ class Bag():
         if len(self.marbles) > 0:
             for i in self.marbles:
                 print(i.getInfo())
+            self.marbles = []
         else:
             print("Nothing came out of the bag")
 
