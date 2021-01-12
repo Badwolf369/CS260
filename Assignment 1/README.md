@@ -3,7 +3,7 @@
 Each marble is represented by a class called 'Marble', which contains the following attributes:
  - Array of integers called 'color' containing (red, green, blue) each with values between 0 and 255
  - Boolean called 'isShooter' that detrmines if the marble is a larger marble, or shooter
- - String called 'name' that is used to identify each marble
+ - int called 'id' that is used to identify each marble
  
 Each marble also contains a function 'getInfo' which will return a string containing all info properly formatted.
 
