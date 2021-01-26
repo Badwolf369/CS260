@@ -5,38 +5,46 @@
 using std::string;
 
 
-class LinkedList {
+class Stack {
+public:
 	//beginning and end for ease of access
 	node* start = nullptr;
 	node* end = nullptr;
 
+	int len = 0;
 
 	//attach a node
-	node* push(node* newnode)
+	node* push(int value)
 	{
+		node* newnode = new node;
+		newnode->value = value;
 		//if list is empty then dont try to link
+		len++;
 		if (end == nullptr)
 		{
 			start = newnode;
 			end = newnode;
+			return newnode;
 		}
 		else
 		{
 			end->link = newnode;
 			end = newnode;
+			return newnode;
 		}
-		return newnode;
+		//equivalent to an error
+		return nullptr;
 	}
 
 
 	//detach and free the first node
-	node pop()
+	int* pop()
 	{
 		//check if list is empty
 		if (start == nullptr)
 		{
-			//I wonder if I can create a warning to remind me to check that this doesnt return NULL...
-			return {'\0', NULL, nullptr};
+			//equivalent to an error
+			return nullptr;
 		}
 
 		else
@@ -44,6 +52,7 @@ class LinkedList {
 			//grab and free the old first node
 			node oldnode = *start;
 			free(start);
+			len--;
 
 			//adjust the wrapper
 			if (oldnode.link == nullptr)
@@ -56,22 +65,23 @@ class LinkedList {
 				start = oldnode.link;
 			}
 
-			return oldnode;
+			//I dont know how this works but it does so ¯\_('-')_/¯
+			return (int*) oldnode.value;
 		}
 	}
 
 
-	node* peek()
+	int* peek()
 	{
 		//check if list is empty
 		if (start == nullptr)
 		{
-			//HEY! check if this return value is NULL!
+			//equivalent to an error
 			return nullptr;
 		}
 		else
 		{
-			return start;
+			return (int*) start->value;
 		}
 	}
 };
