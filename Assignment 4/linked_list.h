@@ -2,9 +2,10 @@
 #include <string>
 
 #include "node.h"
+#include "return_data.h"
 
-#ifndef LINKED_LIST_H_INCLUDE
-#define LINKED_LIST_H_INCLUDE
+#ifndef LINKED_LIST_INCLUDE
+#define LINKED_LIST_INCLUDE
 
 using std::string;
 using std::cout;
@@ -22,7 +23,7 @@ private:
 		//refactor indexing into an i counter
 
 		//if its not in the list
-		if (index > len)
+		if (index > len || index < 0)
 		{
 			//equivalent to an error
 			return nullptr;
@@ -63,14 +64,15 @@ private:
 		}
 	}
 
-	node* link_nodes(node* nodeL, node* nodeR)
+	void link_nodes(node* nodeL, node* nodeR)
 	{
 		//create a proper link between 2 nodes
 		nodeL->link_r = nodeR;
 		nodeR->link_l = nodeL;
-
-		return NULL;
 	}
+
+
+	friend class TestEnv;
 
 
 public:
@@ -124,58 +126,85 @@ public:
 		}
 	}
 
-	int pull(int index)
+	return_data* pull(int index)
 	{
+		return_data* dat = new return_data;
+		//error 0: no error
+		//error 1: empty list
+		//error 2: index outside list
+		//error 3: undefined error
+
 		//check if list is empty
 		if (len == 0)
 		{
 			//return error
-			return -1;
+			dat->error = 1;
+			return dat;
 		}
 
 		//verify index is in list
 		if (index < 0 || index > len)
 		{
 			//return error
-			return -1;
+			dat->error = 2;
+			return dat;
 		}
 		else
 		{
 			//locate the node, pop it out, patch the hole, then delete it
 			node* nodeptr = locate(index);
 			link_nodes(nodeptr->link_l, nodeptr->link_r);
+			dat->value = nodeptr->value;
 			free(nodeptr);
 			len--;
-			return 0;
+
+			return dat;
 		}
+
+		//if you somehow made it here, return error
+		dat->error = 3;
+		return dat;
 	}
 
-	int* peek(int index)
+	return_data* peek(int index)
 	{
+		return_data* dat = new return_data;
+		//error 0: no error
+		//error 1: empty list
+		//error 2: index outside list
+		//error 3: undefined error
+
 		//check if list is empty
 		if (len == 0)
 		{
-			//return error
-			return nullptr;
+			//return 'empty list' error
+			dat->error = 1;
+			return dat;
 		}
 
 		//verify index is in list
 		if (index < 0 || index > len)
 		{
-			//return error
-			return nullptr;
+			//return 'index outside list' error
+			dat->error = 2;
+			return dat;
 		}
 		else
 		{
-			//locate specified index and return pointer to value
+			//locate specified index and return data without error tag
 			node* nodeptr = locate(index);
-			return &(nodeptr->value);
+			dat->value = nodeptr->value;
+			return dat;
 		}
+
+		//if you somehow made it here, return 'undefined error' error
+		dat->error = 3;
+		return dat;
 	}
 
 	void print_state()
 	{
-		cout << "List state:" << endl;
+		cout << "List state(len " << len << "):" << endl;
 
 		if (len <= 0)
 		{
@@ -191,21 +220,14 @@ public:
 				cout << "	" << nodeptr->link_l << endl;
 				cout << "	" << nodeptr << ": " << nodeptr->value << endl;
 				cout << "	" << nodeptr->link_r << endl;
-				cout << "		|" << endl;
+				cout << "	    |" << endl;
 				nodeptr = nodeptr->link_r;
 			}
 			//print last item without a forwards link
 			cout << "	" << nodeptr->link_l << endl;
 			cout << "	" << nodeptr << ": " << nodeptr->value << endl;
-			cout << "	" << nodeptr->link_l << endl << endl;
+			cout << "	" << nodeptr->link_l << endl;
 		}
-	}
-
-	node* set_state(node* newStart, node* newEnd, int newLen)
-	{
-		start = newStart;
-		end = newEnd;
-		len = newLen;
 	}
 };
 

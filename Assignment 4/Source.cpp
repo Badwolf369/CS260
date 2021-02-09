@@ -3,6 +3,7 @@
 
 #include "linked_list.h"
 #include "node.h"
+#include "tests.h"
 
 using std::string;
 using std::cout;
@@ -11,20 +12,11 @@ using std::endl;
 
 int main()
 {
-	LinkedList* mylist = new LinkedList;
+	TestEnv* tests = new TestEnv;
 
-	mylist->print_state();
+	tests->test_print_state();
 
-	mylist->push(1);
-
-	mylist->print_state();
-
-	mylist->push(2);
-	mylist->push(3);
-	mylist->push(4);
-	mylist->push(5);
-
-	mylist->print_state();
+	tests->test_peek();
 
 	return 0;
 }
