@@ -16,6 +16,10 @@ int main()
 
 	tests->test_print_state();
 
+	tests->test_push();
+
+	tests->test_pull();
+
 	tests->test_peek();
 
 	return 0;

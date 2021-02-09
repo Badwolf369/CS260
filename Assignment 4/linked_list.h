@@ -20,8 +20,6 @@ private:
 
 	node* locate(int index)
 	{
-		//refactor indexing into an i counter
-
 		//if its not in the list
 		if (index > len || index < 0)
 		{
@@ -76,7 +74,7 @@ private:
 
 
 public:
-	node* push(int value, int index = -1)
+	void push(int value, int index = -1)
 	{
 		//create new node
 		node* newnode = new node;
@@ -88,7 +86,7 @@ public:
 			end = newnode;
 
 			len++;
-			return newnode;
+			return;
 		}
 
 		//if index unspecified 
@@ -99,7 +97,6 @@ public:
 			end = newnode;
 
 			len++;
-			return newnode;
 		}
 		//if index outside list
 		else if (index > len)
@@ -109,7 +106,6 @@ public:
 			end = newnode;
 
 			len++;
-			return newnode;
 		}
 		//if index is valid
 		else
@@ -122,7 +118,6 @@ public:
 			link_nodes(newnode, oldNodeR);
 
 			len++;
-			return newnode;
 		}
 	}
 

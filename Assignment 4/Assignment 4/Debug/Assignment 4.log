@@ -1,0 +1,3 @@
+﻿  Source.cpp
+S:\Users\samwi\Desktop\Programming\CS260\Assignment 4\linked_list.h(63): warning C4715: 'LinkedList::locate': not all control paths return a value
+  Assignment 4.vcxproj -> S:\Users\samwi\Desktop\Programming\CS260\Assignment 4\Debug\Assignment 4.exe
