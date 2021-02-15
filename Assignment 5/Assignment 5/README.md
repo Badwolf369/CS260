@@ -25,12 +25,12 @@ Number near the center of the list to begin search.
 
 #### Public Functions
 ##### node* find(int value)
-Check the root. If it matches *value*, return that node. Otherwise, go to the right link if its larger; the left link if its smaller. Check again.
+Check the root. If it matches *value*, return that node. If it desnt, go to the right link if its larger; the left link if its smaller. Check again.
 
-##### insert(int value)
+##### int insert(int value)
 Use an algorithm similar to find(), however when it reaches a node  where it cannot continue due to null links, create a new node and attach it.
 
-##### remove(int value)
+##### int remove(int value)
 No clue; need to implement the first two first.
 
 
@@ -39,6 +39,10 @@ No clue; need to implement the first two first.
 Manually create a SmartList, and verify within the memory viewer that the list works properly.
 
 #### find()
-Manually create a SmartList, then verify that the position returned is the correct one with the value.
+Manually create a SmartList then run following tests:
+find item not in list
+find root
+find item in middle layers
+find item on a final layer
 
 #### insert()
