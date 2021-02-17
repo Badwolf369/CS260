@@ -1,9 +1,12 @@
+#include "node.h"
+
+
 #ifndef SMART_LIST_INCLUDE
 #define SMART_LIST_INCLUDE
 
 class SmartList {
 private:
-	root = nullptr;
+	node* root = nullptr;
 
 	friend class TestEnv;
 

@@ -2,7 +2,8 @@
 #define NODE_INCLUDE
 
 struct node {
-	int value;
+	int id;
+	int Value;
 
 	node* parent;
 	node* link_l;
