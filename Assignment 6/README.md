@@ -18,8 +18,8 @@ Link to the left half of the tree. All following nodes are less than the current
 Link to the right half of the tree. All following nodes are greater than the current node.
 
 
-## BiTree
-List that intelligently locates where to place a given number so the tree may remain sorted for binary sort.
+## BinaryTree
+Linked List that intelligently locates where to place a given number so the tree may remain sorted for binary search.
 
 #### Private Attributes
 ##### node* root = nullptr
@@ -44,29 +44,32 @@ NULL
 1
 
 - State 3: consecutive numbers  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
-&nbsp;&nbsp;&nbsp;&nbsp;6  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5  
-4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
-- State 4: unconsecutive numbers  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9  
-&nbsp;&nbsp;&nbsp;&nbsp;7  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
-4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5  
+&nbsp;&nbsp;&nbsp;&nbsp;4  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+- State 4: unconsecutive numbers  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
+&nbsp;&nbsp;&nbsp;&nbsp;4  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
 
 #### Testing functions
 ##### print_state()
-prints the current tree in the same form as we use it here    
- 
+prints the current tree in the same form as on the README  
+
+##### set_state_*()
+* is replaced with one of the testing states above. A tree is manually created to match that state.
+
 ### Tests
 #### Structure itself
-Manually create a BiTree, and verify within the memory viewer that the tree works properly.
+Manually create a BinaryTree, and verify within the memory viewer that the tree works properly.
 
 #### find()
 - **Test 1: find item not in tree**  
@@ -96,12 +99,12 @@ starting state: state 1
 final state:  
 1  
 input:  1
-output: 0  
+output: 0
 - **Test 2: insert item already in tree**  
 starting state: state 3
 final state: unchanged  
 input: 3  
-output: 1  
+output: 1
 - **Test 3: insert item into gap so it has to shift items**  
 starting state: state 4  
 final state:  
@@ -114,7 +117,7 @@ final state:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0  
 input: 8  
-output: success  
+output: success
 - **Test 4: insert item at final layer**  
 starting state:  state 3
 final state:  

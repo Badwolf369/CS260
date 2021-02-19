@@ -4,25 +4,22 @@
 #ifndef SMART_LIST_INCLUDE
 #define SMART_LIST_INCLUDE
 
-class SmartList {
+class BinaryTree {
 private:
 	node* root = nullptr;
 
 	friend class TestEnv;
 
 public:
-	int insert()
-	{
+	int insert() {
 
 	}
 
-	int find()
-	{
+	int find() {
 
 	}
 	
-	int remove()
-	{
+	int remove() {
 
 	}
 };

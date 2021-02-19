@@ -2,12 +2,12 @@
 #define NODE_INCLUDE
 
 struct node {
-	int id;
-	int Value;
+	int id = 0;
+	int value;
 
-	node* parent;
-	node* link_l;
-	node* link_r;
+	node* parent = nullptr;
+	node* link_l = nullptr;
+	node* link_r = nullptr;
 };
 
 #endif
