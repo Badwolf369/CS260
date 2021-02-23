@@ -30,11 +30,23 @@ private:
 	friend class TestEnv;
 
 public:
-	node* insert(int id, int value) {
-		//check if node is equal
-		//no: check node relativity
-		//bigger: recurse right
-		//smaller: recurse left
+	node* insert_rr(int id, int value, node* nodeptr = nullptr) {
+		if (nodeptr == nullptr)
+		{
+			return insert_rr(id, value, root);
+		}
+		else if (nodeptr->id == id)
+		{
+			return nullptr;
+		}
+		else if (id > nodeptr->id)
+		{
+			return insert_rr(id, value, nodeptr->link_r);
+		}
+		else if (id < nodeptr->id)
+		{
+			traverse_rr(nodeptr->link_l, id);
+		}
 	}
 
 	node* find(int id) {
