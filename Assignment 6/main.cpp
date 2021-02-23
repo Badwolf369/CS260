@@ -4,7 +4,11 @@
 
 int main() {
 	TestEnv* tests = new TestEnv;
-	tests->test_data_structure();
+	tests->test_insert();
+
+	//tests->test_find();
+
+	//tests->test_remove();
 
 	return 0;
 }

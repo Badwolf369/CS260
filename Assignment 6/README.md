@@ -43,22 +43,33 @@ NULL
 - State 2: 1 item  
 1
 
-- State 3: consecutive numbers  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5  
-&nbsp;&nbsp;&nbsp;&nbsp;4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
-- State 4: unconsecutive numbers  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
-&nbsp;&nbsp;&nbsp;&nbsp;4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+- State 3: consecutive numbers
+
+                7
+            6
+                5
+        4
+                3
+            2
+                1
+- State 4: unconsecutive numbers
+
+                9
+            7
+                6
+        4
+                3
+            1
+                0
+- State 5: missing children (since this one is unclear without them, x's mean a null node)
+                    
+                
+            6
+                5
+        4
+                
+            2
+                
 
 #### Testing functions
 ##### print_state()
@@ -72,26 +83,26 @@ prints the current tree in the same form as on the README
 Manually create a BinaryTree, and verify within the memory viewer that the tree works properly.
 
 #### find()
-- **Test 1: find item not in tree**  
+- **Test 1: find item in empty tree**  
+starting state: state 1  
+input: 1  
+output: error
+- **Test 2: find item not in tree**  
 tree state: state 3  
 input: 9  
 output: error
-- **Test 2: find root**  
+- **Test 3: find root**  
 starting state: state 3  
 input: 4  
 output: 4
-- **Test 3: find item in middle layers**  
+- **Test 4: find item in middle layers**  
 starting state: state 3  
 input: 6  
 output: 6
-- **Test 4: find item on a final layer**  
+- **Test 5: find item on a final layer**  
 starting state: state 3  
 input: 3  
 output: 3
-- **Test 5: find item in empty tree**
-starting state: state 1
-input: 1
-output: error
 
 #### insert()
 - **Test 1: insert item in empty tree**  
@@ -99,35 +110,76 @@ starting state: state 1
 final state:  
 1  
 input:  1
-output: 0
+output: error
 - **Test 2: insert item already in tree**  
 starting state: state 3
 final state: unchanged  
 input: 3  
-output: 1
+output: 3
 - **Test 3: insert item into gap so it has to shift items**  
 starting state: state 4  
-final state:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
-&nbsp;&nbsp;&nbsp;&nbsp;4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0  
+final state:
+
+                    9
+                8
+            7
+                6
+        4
+                3
+            1
+                0
 input: 8  
-output: success
+output: 8
 - **Test 4: insert item at final layer**  
 starting state:  state 3
-final state:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5  
-&nbsp;&nbsp;&nbsp;&nbsp;4  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1  
+final state:
+
+                    8  
+                7  
+            6  
+                5  
+        4  
+                3  
+            2  
+                1  
 input: 8  
-output: 0
+output: 8
+
+#### remove()
+- **Test 1: Remove item from empty list**  
+starting state: state 1  
+final state: unchanged  
+input: 1  
+output: error
+- **Test 2: Remove item that doesnt exist in list**  
+starting state: state 3  
+final state: unchanged  
+input: 8  
+output: error
+- **Test 3: Remove item with no children**  
+starting state: state 5  
+final state:
+ 
+            6
+        4  
+            2
+input: 5  
+output: 5
+- **Test 4: Remove item with 1 child**  
+starting state: state 5  
+final state:   
+
+            5
+        4
+            2
+input: 6  
+output: 6
+- **Test 5: Remove item with 2 children**  
+starting state: state 3  
+final state: 
+
+            6
+        5  
+            2
+input: 4  
+output: 4
