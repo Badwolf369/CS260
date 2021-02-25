@@ -434,39 +434,7 @@ public:
 
 		print_state();
 
-		//Test 3: insert item into gap so it has to shift items
-		//starting state: unconsecutive
-		//final state:
-		//				9
-		//			8
-		//		7
-		//			6
-		//	4
-		//			3
-		//		1
-		//			0
-		//input: 8
-		//output: 8
-		cout << "Test 3" << endl;
-
-		set_state_unconsecutive();
-		print_state();
-		inp = 8;
-		cout << "input: " << inp << endl;
-
-		out = testList->insert(inp, inp);
-		if (out == nullptr)
-		{
-			cout << "Error, unable to insert item with id: " << inp << endl;
-		}
-		else
-		{
-			cout << "Returned value: " << out->value << endl;
-		}
-
-		print_state();
-
-		//Test 4: insert item at final layer
+		//Test 3: insert item normally
 		//starting state: consecutive
 		//final state:
 		//				8
@@ -479,7 +447,7 @@ public:
 		//			1
 		//input: 8
 		//output: 8
-		cout << "Test 4" << endl;
+		cout << "Test 3" << endl;
 
 		set_state_consecutive();
 		print_state();

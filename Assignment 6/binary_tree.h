@@ -4,6 +4,7 @@
 #ifndef SMART_LIST_INCLUDE
 #define SMART_LIST_INCLUDE
 
+//incomplete and doesnt work at all
 class BinaryTree {
 private:
 	node* root = nullptr;
