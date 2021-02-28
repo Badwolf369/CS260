@@ -351,5 +351,5 @@ MigrationBackup/
 
 # others
 *.sln
-*.vsxproj
+*.vcxproj
 *.filters
