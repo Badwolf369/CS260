@@ -1,7 +1,7 @@
 # Assignment 7: Hashtable
 ### Extra Things
 #### Struct ***node***
-Contains x variables.
+Contains 7 variables.
 *id* long containing the id, aka hash code, to find the node
 *collisionCode* String containing the key of the node to be able to resolve collisions
 
