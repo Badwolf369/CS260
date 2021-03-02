@@ -43,7 +43,8 @@ Converts the first 3 digits of *key* into a long, then sets the item at that ind
 
 ## Smart hash table
 #### Hash function
-Exactly the same hash function as the simple table. It is going to convert bases, with the key being a number in base alphabet-length (a-z, A-Z, 0-9 and spaces would be base 63). The difference here is in storing the numbers. They will be stored as a binary search tree, rather than an array, allowing us to store an infinite number of keys and values. Horribly inneficient? Yup. Dont have to deal with collisions? Also yup.
+Exactly the same hash function as the simple table. It is going to convert bases, with the key being a number in base alphabet-length (a-z, A-Z, 0-9 and spaces would be base 63). The difference here is in storing the numbers. They will be stored as a binary search tree, rather than an array, allowing us to store an infinite number of keys and values. Horribly inneficient? Yup. Dont have to deal with collisions? Also yup. Dynamic memory? Third Yup.  
+It would be interesting to experiment with different hash functions that both allow dynamic memory while approaching the O(1) average case.
 #### insert(String *key*, int *value*)
 Converts the key into a long, then uses the **insert()** function from the BST to insert the item in the proper place. If a hash code already in the tree is entered, it will check the collision code. If the collision code matches *key*, then that node will be overwritten. If the collision code is different then it will check for a *sibling* node. If none exists, it creates one. If one exists it checks that node's collision code. Continues until a node is created or the matching collision code is found.
 #### contains(String *key*)
