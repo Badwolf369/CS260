@@ -6,6 +6,7 @@ Contains 7 variables.
 *collisionCode* String containing the key of the node to be able to resolve collisions
 
 *Value* integer containing the value of the node.  
+
 *parent* node pointer pointing to the node attached one level up.  
 *child_r* node pointer pointing to the node attached one level down with a higher id.  
 *child_l* node pointer pointing to the node attached one level down with a lower id.  
@@ -35,11 +36,38 @@ The hash function I use is an interesting one. It is going to convert bases, wit
 ##### Tests
 #1: 1 digit
 input: 'A'
-output 
+output: 36
 
+#2: 2 digits
+input: An
+output: 2291
+
+#3: 3 digits
+input: Ant
+output: 83126
+
+#4 4+ digits
+input: Ants
+output: 83126 (only first 3 digits)
 
 #### Insert(String *key*, int *value*)
 Converts the first 3 digits of *key* into a long, then overwrites the item at that index with *value*.
+
+##### Tests
+*using smaller array(9 keys) and alphabet("abc") and keys(2 digits) for testing*
+
+
+#1: adding to empty slot
+starting state: [x, x, x, x, x, x, x, x, x]
+input: bc, 5
+output: 5
+final state: [x, x, x, x, x, 5, x, x, x]
+
+#2: overwriting collision
+starting state: [x, x, 3, x, x, x, x, x, x]
+input: c, 2
+output: 2
+final state: [x, x, 2, x, x, x, x, x, x]
 
 #### Contains(String *key*)
 Converts the first 3 digits of *key* into a long, then returns the nodeptr at that index. If the index is empty it returns null.
