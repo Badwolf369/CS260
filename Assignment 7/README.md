@@ -19,8 +19,8 @@ Refer to the README in the `Assignment 6` folder
 Converts a number of base-63 to an unsigned long.
 ```
 get the length of the number (len)
-get the value of the first digit (c)
-get the base (b)
+get the value of the first digit (c); the value of c is determined using a string containing the entire predefined "alphabet" and then using the function String::find() to get its position in the alphabet, which is its value
+get the base (b), determined by the length of the alphabet
 create a variable (total)
 loop till we reach the end:
     total += c*(b^len-1)
@@ -31,6 +31,11 @@ loop till we reach the end:
 ## Simple hash table
 #### Hash function:
 The hash function I use is an interesting one. It is going to convert bases, with the key being a number in base alphabet-length (a-z, A-Z, 0-9 and spaces would be base 63) which will return the exact index as the code. Because we do not have room to make a list that could contain *all* possible keys as that would be basically infinite, the function will return the index of the first 3 digits.
+
+##### Tests
+#1: 1 digit
+input: 
+
 
 #### Insert(String *key*, int *value*)
 Converts the first 3 digits of *key* into a long, then overwrites the item at that index with *value*.
