@@ -34,7 +34,8 @@ The hash function I use is an interesting one. It is going to convert bases, wit
 
 ##### Tests
 #1: 1 digit
-input: 
+input: 'A'
+output 
 
 
 #### Insert(String *key*, int *value*)
