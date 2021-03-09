@@ -22,6 +22,13 @@ string alphabet_conversion(string oldAlphabet, string newAlphabet, string number
 		}
 	}
 	else if (newAlphabet.length() > oldAlphabet.length()) {
+		//expand the number into base 10
+		int total = 0;
+		int val;
+		for (int i = 0; i < number.length(); i++) {
+			total += oldAlphabet.find(number[i]);
+			total *= oldAlphabet.length();
+		}
 
 	}
 	else {
