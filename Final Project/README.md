@@ -43,7 +43,7 @@ Returns:
 
 <div class="mermaid">
      graph TD
-    a(Verify vertex exists)--Vertex does not exist-->b(Return 1)
+    a(Verify vertex with name exists)--Vertex does not exist-->b(Return 1)
     a--else-->c(loop through each vertex in vertices and if it has an edge pointing to this one, delete that edge)-->d(delete vertex)-->e(return 0)
 </div>
 
@@ -64,9 +64,6 @@ Returns:
     e--else-->g(add proper information to edges in source)-->h(Return 0)
 </div>
 
-
-
-
 #### int remove_edge(string *source*, string *desination*)
 Removes edge which points to vertex with name *destination* from vertex with name *source*
 Returns:
@@ -83,4 +80,4 @@ Returns:
 </div>
 
 
-### vertex Vector generate_minimum_tree(vertex *start*)
+### Graph generate_minimum_tree(vertex *start*)
