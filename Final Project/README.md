@@ -3,6 +3,7 @@ A graph that is able to add vertices and edges, locate a particular vertex quick
 
 ---
 ## Struct *vertex*
+A blob of data which, when combined with other vertices, contains all of the data in the graph.
 ### Variables
 **int** *value* = 0;  
 The integer value contained within the vertex. Depending on the use of the graph there can be as many or as little values in each vertex as needed.
@@ -10,7 +11,7 @@ The integer value contained within the vertex. Depending on the use of the graph
 **string** *id* = ***NULL***;  
 Identifying string to help find this vertex and differenciate it from other vertices.
 
-**map <string, pair <vertex\*, int>>** *edges*;  
+**map <string, int>** *edges*;  
 A map containing every adjacent vertex's name and the edge's weight
 
 ---
@@ -50,7 +51,7 @@ Returns:
 Adds the vertex with name *desination* to the vertex with name *source*'s edge list with the attached weight of *weight*.
 Returns:
 - 0 - success
-- 1 - edge already exists with same weight (note: if weights of duplicate edges are different then the new weight will override the old weight and function will return success)
+- 1 - edge already exists with same weight
 - 2 - destination does not exist
 - 3 - source does not exist
 - -1 - unknown error.
@@ -59,7 +60,7 @@ Returns:
      graph TD
     a(Verify that source exists)--source does not exist-->b(Return 3)
     a--else-->c(Verify that destination exists)--destination does not exist-->d(Return 2)
-    c--else-->e(make sure the edge is not a duplicate)--source is a duplicate-->f(Return 1)
+    c--else-->e(make sure the edge is not a duplicate)--edge is a duplicate-->f(Return 1)
     e--else-->g(add proper information to edges in source)-->h(Return 0)
 </div>
 
