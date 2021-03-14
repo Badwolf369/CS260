@@ -51,7 +51,7 @@ Returns:
 Adds the vertex with name *desination* to the vertex with name *source*'s edge list with the attached weight of *weight*.
 Returns:
 - 0 - success
-- 1 - edge already exists with same weight
+- 1 - edge already exists
 - 2 - destination does not exist
 - 3 - source does not exist
 - -1 - unknown error.
@@ -80,4 +80,141 @@ Returns:
 </div>
 
 
-### Graph generate_minimum_tree(vertex *start*)
+#### Graph generate_minimum_tree(vertex *start*)
+
+
+
+---
+## TestEnv
+### Simple testing states
+each of these states is constructed manually
+
+#### Empty
+Pretty self explanatory, it's the graph object with no vertices.
+Console output state:
+```
+Empty
+```
+
+#### 1 vertex
+Console output state:
+```
+A
+```
+<div class="mermaid">
+     graph LR
+    A((A))
+</div>
+
+#### 5 vertices & 8 edges(unweighted)
+Console output state:
+```
+(A)-1->(B)-1->(C)-1->(D)
+(B)-1->(C)
+(C)-1->(A)-1->(D)
+(D)-1->(E)
+(E)-1->(C)
+```
+![5 Vertices](5Verts.png)
+
+
+### Tests
+
+#### Test add_vertex()
+**Test 1: Add to empty graph**
+Test State: Empty
+Input: "A", 1
+Output: 0
+Output State:
+```
+(A)
+```
+
+**Test 2: Add to graph with other items**
+Test State: 5 vertices & 8 edges
+Input: "F", 6
+Output: 0
+Output State: 
+```
+(A)--1-->(B)--1-->(C)--1-->(D)
+(B)--1-->(C)
+(C)--1-->(A)--1-->(D)
+(D)--1-->(E)
+(E)--1-->(C)
+(F)
+```
+
+**Test 3: Add vertex that already exists**
+Test State: 5 vertices & 8 edges
+Input: "D", 4
+Output: 1
+Output State: Unchanged
+
+#### Test remove_vertex()
+**Test 1: Remove vertex from graph with multiple vertices**
+Test State: 5 vertices & 8 edges
+Input: "C"
+Output: 0
+Output State:
+```
+(A)--1-->(B)--1-->(D)
+(B)
+(D)--1-->(E)
+(E)
+```
+
+**Test 2: Remove vertex from graph with only 1 vertex**
+Test State: 1 vertex
+Input: "A"
+Output: 0
+Output State: Empty
+
+**Test 3: Remove vertex that does not exist**
+Test State: Empty
+Input: "A"
+Output: 1
+Output State: Unchanged
+
+#### Test add_edge()
+**Test 1: Add edge properly**
+Test State: 5 vertices & 8 edges
+Input: 
+Output:
+Output State:
+
+**Test 2: Add edge that already exists**
+Test State:
+Input:
+Output:
+Output State:
+
+**Test 3: Add edge where destination does not exist**
+Test State:
+Input:
+Output:
+Output State:
+
+**Test 4: Add edge where source does not exist**
+Test State:
+Input:
+Output:
+Output State:
+
+#### Test remove_edge()
+**Test 1: Remove edge properly**
+Test State:
+Input:
+Output:
+Output State:
+
+**Test 2: Remove edge where source does not exist**
+Test State:
+Input:
+Output:
+Output State:
+
+**Test 3: Remove edge that does not exist**
+Test State:
+Input:
+Output:
+Output State:
