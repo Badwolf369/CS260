@@ -5,11 +5,14 @@
 
 #include "vertex.h"
 
-using namespace std;
+using std::map;
+using std::string;
 
 class Graph {
 private:
 	map<string, vertex> vertices;
+
+	friend class TestEnv;
 
 public:
 	int add_vertex(string name, int value) {
@@ -70,12 +73,13 @@ public:
 		}
 		else
 		{
-			map<string, int> sourceEdges = vertices[source].edges;
-			if (sourceEdges.find(destination) != sourceEdges.end()) {
+			map<string, int>* sourceEdges = &(vertices[source].edges);
+			if (sourceEdges->find(destination) != sourceEdges->end()) {
 				return 1;
 			}
 			else {
-				sourceEdges.emplace(destination, weight);
+				sourceEdges->emplace(destination, weight);
+				return 0;
 			}
 		}
 	}
@@ -92,13 +96,13 @@ public:
 			return 2;
 		}
 		else {
-			map<string, int> sourceEdges = vertices[source].edges;
+			map<string, int>* sourceEdges = &(vertices[source].edges);
 
-			if (sourceEdges.find(destination) == sourceEdges.end()) {
-				return 3;
+			if (sourceEdges->find(destination) == sourceEdges->end()) {
+				return 1;
 			}
 			else {
-				sourceEdges.erase(destination);
+				sourceEdges->erase(destination);
 			}
 		}
 	}

@@ -47,7 +47,7 @@ Returns:
     a--else-->c(loop through each vertex in vertices and if it has an edge pointing to this one, delete that edge)-->d(delete vertex)-->e(return 0)
 </div>
 
-#### int add_edge(string *source*, string *desination*)
+#### int add_edge(string *source*, string *desination*, int *weight*)
 Adds the vertex with name *desination* to the vertex with name *source*'s edge list with the attached weight of *weight*.
 Returns:
 - 0 - success
@@ -91,35 +91,28 @@ each of these states is constructed manually
 
 #### Empty
 Pretty self explanatory, it's the graph object with no vertices.
-Console output state:
+Console output:
 ```
 Empty
 ```
 
 #### 1 vertex
-Console output state:
+Console output:
 ```
 A
 ```
-<div class="mermaid">
-     graph LR
-    A((A))
-</div>
 
 #### 5 vertices & 8 edges(unweighted)
-Console output state:
+Console output:
 ```
-(A)-1->(B)-1->(C)-1->(D)
-(B)-1->(C)
-(C)-1->(A)-1->(D)
-(D)-1->(E)
-(E)-1->(C)
+(A)--1-->(B)--1-->(C)--1-->(D)
+(B)--1-->(C)
+(C)--1-->(A)--1-->(D)
+(D)--1-->(E)
+(E)--1-->(C)
 ```
-![5 Vertices](5Verts.png)
-
 
 ### Tests
-
 #### Test add_vertex()
 **Test 1: Add to empty graph**
 Test State: Empty
@@ -131,7 +124,7 @@ Output State:
 ```
 
 **Test 2: Add to graph with other items**
-Test State: 5 vertices & 8 edges
+Test State: 5 vertices & 8 edges(unweighted)
 Input: "F", 6
 Output: 0
 Output State: 
@@ -145,14 +138,14 @@ Output State:
 ```
 
 **Test 3: Add vertex that already exists**
-Test State: 5 vertices & 8 edges
+Test State: 5 vertices & 8 edges(unweighted)
 Input: "D", 4
 Output: 1
 Output State: Unchanged
 
 #### Test remove_vertex()
 **Test 1: Remove vertex from graph with multiple vertices**
-Test State: 5 vertices & 8 edges
+Test State: 5 vertices & 8 edges(unweighted)
 Input: "C"
 Output: 0
 Output State:
@@ -177,44 +170,58 @@ Output State: Unchanged
 
 #### Test add_edge()
 **Test 1: Add edge properly**
-Test State: 5 vertices & 8 edges
-Input: 
-Output:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: B, D, 1
+Output: 0
 Output State:
+```
+(A)--1-->(B)--1-->(C)--1-->(D)
+(B)--1-->(C)--1-->(D)
+(C)--1-->(A)--1-->(D)
+(D)--1-->(E)
+(E)--1-->(C)
+```
 
 **Test 2: Add edge that already exists**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: B, C, 1
+Output: 1
+Output State: Unchanged
 
 **Test 3: Add edge where destination does not exist**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: C, F, 1
+Output: 2
+Output State: Unchanged
 
 **Test 4: Add edge where source does not exist**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: F, A, 1
+Output: 3
+Output State: Unchanged
 
 #### Test remove_edge()
 **Test 1: Remove edge properly**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: B, C
+Output: 0
+Output State: 
+```
+(A)--1-->(B)--1-->(C)--1-->(D)
+(B)
+(C)--1-->(A)--1-->(D)
+(D)--1-->(E)
+(E)--1-->(C)
+```
 
 **Test 2: Remove edge where source does not exist**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: F, A
+Output: 1
+Output State: Unchanged
 
 **Test 3: Remove edge that does not exist**
-Test State:
-Input:
-Output:
-Output State:
+Test State: 5 vertices & 8 edges(unweighted)
+Input: C, E
+Output: 2
+Output State: Unchanged
